@@ -66,6 +66,18 @@ describe('parseMapper', () => {
     });
   });
 
+  it('Should support namespaces with generics', () => {
+    const result = parseMapper('file#Namespace.Type<Generic>', 'MyGqlType');
+
+    expect(result).toEqual({
+      default: false,
+      isExternal: true,
+      import: 'Namespace',
+      type: 'Namespace.Type<Generic>',
+      source: 'file',
+    });
+  });
+
   it('Should support aliases', () => {
     const result = parseMapper('file#Type as SomeOtherType', 'SomeType');
 
