@@ -48,7 +48,7 @@ function prepareLegacy(mapper: string): Helpers {
 
 function prepare(mapper: string): Helpers {
   const [source, path] = mapper.split('#');
-  const isNamespace = path.includes('.');
+  const isNamespace = !!path.match(/^[^.<]+\./);
   const isDefault = path.trim() === 'default' || path.startsWith('default ');
   const hasAlias = path.includes(' as ');
 
