@@ -114,6 +114,18 @@ describe('parseMapper', () => {
     });
   });
 
+  it('should support generic with dotted access', () => {
+    const result = parseMapper(`file#Type<Generic.Property>`, 'SomeType');
+
+    expect(result).toEqual({
+      default: false,
+      isExternal: true,
+      import: 'Type',
+      type: 'Type<Generic.Property>',
+      source: 'file',
+    });
+  });
+
   describe('suffix', () => {
     it('Should not add a suffix to a simple named mapper', () => {
       const result = parseMapper('MyType', null, 'Model');
